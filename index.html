@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Controle de Gastos</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Cabeçalho -->
+      <div class="header">
+        <h1>Controle de Gastos</h1>
+        <p>Registre suas despesas e mantenha o controle financeiro</p>
+        <button id="darkModeToggle" class="btn btn-outline-light">
+          Modo Escuro
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-outline-light"
+          data-toggle="modal"
+          data-target="#notesModal"
+        >
+          Minhas Anotações
+        </button>
+      </div>
+      <div
+        class="modal fade"
+        id="notesModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="notesModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content custom-modal">
+            <div class="modal-header">
+              <h5 class="modal-title" id="notesModalLabel">Anotações</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Fechar"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <textarea
+                id="noteTextarea"
+                class="form-control"
+                rows="6"
+                placeholder="Digite suas anotações aqui..."
+              ></textarea>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-dismiss="modal"
+              >
+                Fechar
+              </button>
+              <button type="button" class="btn btn-warning" id="saveNote">
+                Salvar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumo Mensal -->
+      <div class="summary">
+        <h2 class="mt-4">Resumo Mensal</h2>
+        <div>
+          <p>Saldo: <br /><span>R$</span> <span id="balance">0.00</span></p>
+          <p>
+            Total de Despesas: <br /><span>R$</span>
+            <span id="totalExpenses">0.00</span>
+          </p>
+        </div>
+      </div>
+      <!-- Controle de Gastos -->
+      <div class="expenses">
+        <h2 class="mt-4">Controle de Gastos</h2>
+        <!-- Formulário para adicionar despesas -->
+        <form id="expenseForm">
+          <div class="form-group">
+            <label for="description">Descrição</label>
+            <input
+              type="text"
+              class="form-control"
+              id="description"
+              placeholder="Descrição da despesa"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="amount">Valor</label>
+            <input
+              type="number"
+              class="form-control"
+              id="amount"
+              step="0.01"
+              placeholder="Valor da despesa"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="date">Data</label>
+            <input type="date" class="form-control" id="date" required />
+          </div>
+          <div class="form-group">
+            <label for="actionType">Tipo de Ação</label>
+            <select class="form-control" id="actionType">
+              <option value="entrada">Entrada</option>
+              <option value="saida">Saída</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success">
+            Adicionar Despesa
+          </button>
+        </form>
+
+        <!-- Tabela para exibir despesas -->
+        <h3 class="mt-4">Despesas</h3>
+        <div class="container d-flex justify-content-center">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>Valor</th>
+                  <th>Data</th>
+                  <th>Entrada/Saída</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="expenseList">
+                <!-- Aqui serão exibidas as despesas adicionadas dinamicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="confirmDeleteModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="confirmDeleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmDeleteModalLabel">
+              <p>Confirmação de Exclusão</p>
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Fechar"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Tem certeza de que deseja excluir este item?</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-danger" id="confirmDelete">
+              Confirmar Exclusão
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

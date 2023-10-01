@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+*{
+    font-family: 'Poppins', sans-serif; 
+    color: #f2f2f2;
+}
+/* Estilos personalizados */
+body {
+  background: linear-gradient(#ce9ffc, #7367f0);
+  background-size: cover;
+  min-height: 98vh;
+}
+.container {
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.header h1 {
+  color: #f2f2f2;
+}
+.header p {
+  color: #e0e0e0;
+  font-size: 20px;
+}
+
+.header button{
+  margin: 20px;
+}
+/* Estilo personalizado para o modal */
+.custom-modal {
+  background-color: #ce9ffc; /* Substitua "your-color" pela cor desejada */
+}
+.expenses {
+  margin-top: 20px;
+}
+.summary {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.summary div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.summary h2 {
+  color: #f2f2f2;
+}
+.summary p {
+  color: #e0e0e0;
+  font-size: 22px;
+  width: 50%;
+}
+
+.summary p span{
+    color: #f2f2f2;
+}
+
+#balance{
+  color: green;
+}
+
+#totalExpenses{
+  color: red;
+}
+
+.form-control option{
+    color: #1b1b1b;
+}
+
+/* Classe para estilo de entrada (verde) */
+.text-success {
+  color: green;
+}
+
+/* Classe para estilo de saída (vermelho) */
+.text-danger {
+  color: red;
+}
+
+
+.form-group label{
+  font-size: 23px;
+}
+
+#description::placeholder{
+  font-size: 20px;
+}
+#amount::placeholder{
+  font-size: 20px;
+}
+.form-control{
+  font-size: 20px;
+}
+
+
+/* Estilo personalizado para a tabela */
+.table-responsive table {
+  width: 100%;
+  font-size: 16px; /* Ajuste o tamanho da fonte de acordo com suas preferências */
+}
+
+.table-responsive th,
+.table-responsive td {
+  padding: 12px; /* Ajuste o preenchimento interno das células da tabela conforme necessário */
+}
+
+.table td, table th{
+    text-align: center;
+    background: #f2f2f2;
+    color: #000000;
+    
+}
+
+#confirmDeleteModalLabel p{
+  color: #000000;
+}
+
+.modal-body p{
+  color: #000000 !important;
+}
+
+
+#expenseList td span{
+  color: #000000;
+}
+
+.dark-mode, .dark-mode td {
+    background: #1b1b1b;
+    color: #fff;
+}
+
+/* Fontes brancas para o modo escuro */
+.dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode p, .dark-mode th {
+    color: #c5c5c5;
+    background: none;
+}
+
+.dark-mode #expenseList td span{
+  color: #fff;
+}
+
+.dark-mode .container {
+    background-color: #1b1b1b;
+}
+
